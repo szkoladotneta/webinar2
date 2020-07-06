@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webinar2Todo.Infrastructure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webinar2Todo.Persistance", "Webinar2Todo.Persistance\Webinar2Todo.Persistance.csproj", "{A506749C-97A8-47BB-9F76-9C76E9D1BBC8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Webinar2Todo.Tests", "Webinar2Todo.Tests", "{0ADA075B-7CE1-4A11-AD4F-7C59540B3611}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
