@@ -52,6 +52,18 @@ namespace Webinar2Todo.Application.Services
             var lists = await _listRepo.GetAll()
                 .ProjectTo<TodoListVm>(_mapper.ConfigurationProvider)
                 .ToListAsync();
+            foreach (var list in lists)
+            {
+                var items = await _itemRepo.GetTodoItemsForList(list.Id)
+                    .ProjectTo<TodoItemVm>(_mapper.ConfigurationProvider)
+                    .ToListAsync();
+                var todoItems = new TodoItemListVm()
+                {
+                    Items = items,
+                    Count = items.Count
+                };
+                list.Items = todoItems;
+            }
             return new TodoListListVm()
             {
                 Lists = lists,
@@ -66,6 +78,7 @@ namespace Webinar2Todo.Application.Services
                 .ToListAsync();
             return new TodoItemListVm()
             {
+                ListId = listId,
                 Items = items,
                 Count = items.Count
             };

@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Webinar2Todo.Infrastructure;
+using Webinar2Todo.Application;
 
 namespace Webinar2Todo
 {
@@ -32,6 +33,8 @@ namespace Webinar2Todo
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
+            services.AddApplication();
+            services.AddInfrastructure();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -62,7 +65,7 @@ namespace Webinar2Todo
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}/");
                 endpoints.MapRazorPages();
             });
         }

@@ -1,0 +1,42 @@
+﻿@model Webinar2Todo.Application.ViewModels.TodoListListVm
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Todo</h1>
+
+@foreach (var list in Model.Lists)
+{
+    <a asp-action="ListDetails" asp-route-id="@list.Id" class="btn btn-primary">@list.ListName</a>
+}
+<a asp-action="CreateList">Create new List</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Is Done</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>List Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var list in Model.Lists)
+            {
+                @foreach (var item in list.Items.Items)
+                {
+                    <td><input asp-for="@item.IsCompleted" /></td>
+                    <td>@item.Task</td>
+                    <td>@item.Description</td>
+                    <td>@(item.DueDate.HasValue ? item.DueDate.Value.Date.ToShortDateString(): null)</td>
+                    <td>@list.ListName</td>
+                    <td><a asp-action="EditItem" asp-route-id="@item.Id">Edit</a> | <a asp-action="DeleteItem" asp-route-id="@item.Id">Delete</a></td>
+                }
+            }
+        </tr>
+    </tbody>
+</table>
+
